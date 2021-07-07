@@ -1,0 +1,372 @@
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Hora de atención y cupo en línea</h4>
+      </div>
+      <!-- <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="javascript:void(0)">Inicio</a>
+            </li>
+            <li class="breadcrumb-item active">Plataformas</li>
+          </ol> -->
+          <!--  <button type="button" class="btn btn-success d-none d-lg-block m-l-15"> Upgrade To Pro</button> -->
+        <!-- </div>
+      </div> -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <!-- column -->
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Horarios</h4>
+            <h6 class="card-subtitle">Configuración de los horarios</h6>
+  
+            <div class="row">
+              <div class="col-12">
+                <button
+                  class="btn btn-dark mb-2 b"
+                  id="botonNuevo"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#modalAgregarHorario"
+                >
+                  Nuevo
+                  <i class="fa fa-plus"></i>
+                </button>
+                <button
+                  class="btn btn-dark mb-2 ml-2 b"
+                  id="btnBorrar"
+                  name="btnBorrar"
+                  type="button"
+                >
+                  <li class="fa fa-trash"></li>
+                </button>
+              </div>
+              <!-- <button (click)="rerender()">PRUEBA</button> -->
+            </div>
+  
+            <div class="table-responsive">
+              <table
+                datatable
+                [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger"
+                class="table row-border hover"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="text-center">Hora</th>
+                    <th class="text-center">Núm. Boletos</th>
+                    <!-- <th class="text-center">Estatus</th> -->
+                    <th class="text-center">Modificar</th>
+                    <th class="text-center">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <!-- <td class="text-center">
+                      <label class="switchBtn">
+                        <input
+                          type="checkbox"
+                          id="chkEstatus"
+                          [checked]="horario.CVE_ESTATUS_REGISTRO == 'VIG'"
+                        />
+                        <div class="slide"></div>
+                      </label>
+                    </td> -->
+                    <td class="text-center">
+                      <button
+                        class="btn btn-dark b"
+                        id="btnEditar"
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#modalEdicionHorario"
+                      >
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </td>
+                    <td class="text-center">
+                      <!-- <button class="btn btn-dark b">
+                        <i class="fa fa-trash"></i>
+                      </button> -->
+                      <input
+                        type="checkbox"
+                        name="seleccionado"
+                        id="seleccionado"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Container fluid  -->
+  <!-- ============================================================== -->
+  <!-- Vertically centered modal -->
+  <div
+    class="modal fade"
+    id="modalAgregarHorario"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Configurar horario</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            autocomplete="off"
+          >
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="horaInicio">Hora inicial: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="horaInicio"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+              <div class="col-6">
+                <label for="horaFinal">Hora final: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="horaFinal"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="boletos">Intervalo de la hora de entrada: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="inertavaloHoraEntrada"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+              <div class="col-6">
+                <label for="horaFinalRecorrido">Hora final recorrido: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="horaFinalRecorrido"
+                  />
+                </div>
+                <small class="text-danger" *ngIf="validaHoraFinalRecorrido"
+                  >Campo requerido</small
+                >
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="intervaloRecorrido">Intervalo del recorrido: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="intervaloRecorrido"
+                    id="intervaloRecorrido"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+              <div class="col-6">
+                <label for="numBoleto">Numero de boletos: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="numBoleto"
+                    id="numBoleto"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-dark b"
+                [disabled]="formHorario.invalid"
+              >
+                Guardar <i class="fa fa-save"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-dark b"
+                data-dismiss="modal"
+              >
+                Cancelar
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <hr />
+        <!-- <pre>Estado del formulario {{ formCalendario.valid }}</pre> -->
+      </div>
+    </div>
+  </div>
+  <!-- ------------------------Modal edicion--------------------------- -->
+  <div
+    class="modal fade"
+    id="modalEdicionHorario"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Configurar horario</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            autocomplete="off"
+          >
+            <input
+              type="text"
+              name="cve_horario_entrada_e"
+              id="cve_horario_entrada_e"
+              hidden
+            />
+            <input
+              type="text"
+              id="hora_inicial_recorrido"
+              name="hora_inicial_recorrido"
+              hidden
+            />
+            <input
+              type="text"
+              id="hora_final_recorrido"
+              name="hora_final_recorrido"
+              hidden
+            />
+            <div class="form-group row">
+              <div class="col-6">
+                <label for="hora_ini">Hora entrada: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="time"
+                    name="hora_ini"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+              <div class="col-6">
+                <label for="num_boletos">Boletos online: </label>
+                <div>
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="num_boletos"
+                    id="num_boletos"
+                  />
+                </div>
+                <small class="text-danger"
+                  >Campo requerido</small
+                >
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-6">
+                <label class="switchBtn" >
+                  <input
+                    type="checkbox"
+                    name="cve_estatus_registro"
+                    id="cve_estatus_registro"   
+                  />
+                  <div class="slide"></div>
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-dark b"
+                [disabled]="formHorarioEdicion.invalid"
+              >
+                Guardar <i class="fa fa-save"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-dark b"
+                data-dismiss="modal"
+              >
+                Cancelar
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+  
