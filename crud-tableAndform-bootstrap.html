@@ -203,7 +203,7 @@
                     name="horaFinalRecorrido"
                   />
                 </div>
-                <small class="text-danger" *ngIf="validaHoraFinalRecorrido"
+                <small class="text-danger"
                   >Campo requerido</small
                 >
               </div>
@@ -242,7 +242,6 @@
               <button
                 type="submit"
                 class="btn btn-dark b"
-                [disabled]="formHorario.invalid"
               >
                 Guardar <i class="fa fa-save"></i>
               </button>
@@ -350,7 +349,6 @@
               <button
                 type="submit"
                 class="btn btn-dark b"
-                [disabled]="formHorarioEdicion.invalid"
               >
                 Guardar <i class="fa fa-save"></i>
               </button>
